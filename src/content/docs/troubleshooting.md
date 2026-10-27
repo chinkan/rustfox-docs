@@ -70,3 +70,9 @@ The portal is an admin UI. Keep it on loopback or a private network. How to enab
 | The Tailscale URL disappeared from `/portal` | A tailnet IP can change after key expiry or reinstall. Recheck `tailscale ip -4`, or bind `0.0.0.0`. |
 
 LAN bind is for a trusted network. Keep port 8090 blocked on any router firewall. The channel is plain HTTP. The runbook's unsupported list (public tunnels, port-forward plus DDNS) is the boundary. If you ever need a public host, put a TLS reverse proxy in front and leave `bind` on loopback. That path is described only in the [runbook](https://github.com/chinkan/RustFox/blob/main/docs/portal-access.md).
+
+## Self-upgrade
+
+| What you see | What to do |
+| --- | --- |
+| On Unix, `/selfupgrade release` (or the self-upgrade release path) reports that it could not find a binary named `rustfox` in the release asset (`Could not find the required path in the archive: "rustfox"`) | Download the platform `.tar.gz` from [GitHub Releases](https://github.com/chinkan/RustFox/releases), run `tar xzf` on it, and replace the installed binary with the extracted `rustfox`. The steps are on [Update](/rustfox-docs/update/#self-upgrade). |

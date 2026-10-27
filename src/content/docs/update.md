@@ -16,6 +16,8 @@ Longer notes: [GUIDE.md — self-upgrade](https://github.com/chinkan/RustFox/blo
 | Telegram | `/selfupgrade release` | download latest GitHub release binary |
 | Portal Settings | `auto` \| `main` \| `release` | same mapping as Telegram |
 
+On Unix, `/selfupgrade release` (or the self-upgrade release path) may report that it could not find a binary named `rustfox` in the release asset (`Could not find the required path in the archive: "rustfox"`). Download the platform `.tar.gz` from [GitHub Releases](https://github.com/chinkan/RustFox/releases), run `tar xzf` on it, and replace the installed binary with the extracted `rustfox`.
+
 Telegram accepts only a bare `/selfupgrade`, `/selfupgrade main`, or `/selfupgrade release`. Any other argument is rejected. It is not treated as a git branch name. Other branches stay on the built-in `self_upgrade` tool (`mode=source` plus `branch`), not on the Telegram command.
 
 If you run from a git clone under systemd or launchd, prefer `/selfupgrade main` (or Portal `main`). A manual tmp clone, build, and `cargo install` is the fallback when there is no self-upgrade path.
