@@ -1,11 +1,11 @@
 ---
 title: Features
-description: What RustFox can do with tools, MCP, schedule, and memory, and the limits on each.
+description: What RustFox can do with Agent tools, MCP, schedule, and memory, and the limits on each.
 ---
 
 This page is a catalog: what each capability is, and where it stops. Daily chat is [Telegram](/rustfox-docs/telegram/). Wizard and `config.toml` are [Config](/rustfox-docs/config/). The browser UI is [Portal](/rustfox-docs/portal/). The operator reference is [GUIDE.md](https://github.com/chinkan/RustFox/blob/main/docs/GUIDE.md).
 
-## tools
+## Agent tools
 
 RustFox runs an agent loop. Your message goes to the Active model. The model may call tools. RustFox runs those calls until it has a reply, or until it hits the iteration cap.
 
@@ -21,7 +21,7 @@ File and command tools stay inside `sandbox.allowed_directory` (default `workspa
 | Plans | `plan_create`, `plan_update`, `plan_view` | The plan file is `.rustfox_plan.json` in the sandbox |
 | Upgrade | `self_upgrade` | Same `auto` / `main` / `release` mapping as Telegram. Steps are on [Update](/rustfox-docs/update/) |
 
-A bot's tool list follows `[[bots]]` `tools`, then `agents/<persona>/AGENT.md`, then install defaults. `/tools` lists what that bot registered, including MCP tools. Command spellings are on [Commands](/rustfox-docs/commands/).
+A bot's tool list follows `[[bots]]` `tools`, then `agents/<persona>/AGENT.md`, then install defaults. `/tools` lists registered tools for that bot; spellings live on [Commands](/rustfox-docs/commands/).
 
 Related skill and agent file tools (`patch_skill`, `reload_agents`, `reload_skills_and_agents`) are in [GUIDE.md — Built-in tools](https://github.com/chinkan/RustFox/blob/main/docs/GUIDE.md#built-in-tools).
 
