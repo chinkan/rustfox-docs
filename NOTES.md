@@ -15,4 +15,4 @@ The config schema rejects an empty `versions` array (`At least one version of th
 
 ## ADRs
 
-Architecture decision records stay in [chinkan/RustFox `docs/adr/`](https://github.com/chinkan/RustFox/tree/main/docs/adr). This site links and summarizes operator locks. It is not the source of truth, and it does not vendor the ADR tree.
+Architecture decision records stay in the RustFox repository under `docs/adr/` for contributors. Published pages summarize behavior in plain language and do not link ADR bodies. This site does not vendor the ADR tree.

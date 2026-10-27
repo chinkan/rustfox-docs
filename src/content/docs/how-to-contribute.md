@@ -27,6 +27,6 @@ Repository: [chinkan/rustfox-docs](https://github.com/chinkan/rustfox-docs). The
 4. Run `npm install` if you need to, then `npm run build`. The build has to exit 0.
 5. Open a pull request against `main`. **Edit this page** on the published site opens the same repo.
 
-Link an ADR when a page needs the decision. Do not vendor the ADR tree into `src/content/docs/`. The public site is English-only. GUIDE, the ADR list, and architecture notes stay in the RustFox repository; link out instead of adding them to the sidebar.
+Do not vendor the ADR tree into `src/content/docs/`. End-user pages explain the behavior in plain language. They do not link ADR bodies. Point readers to [GUIDE.md](https://github.com/chinkan/RustFox/blob/main/docs/GUIDE.md), [portal-access.md](https://github.com/chinkan/RustFox/blob/main/docs/portal-access.md), or an in-site page such as Config, Providers, Commands, Portal, or Update. The public site is English-only. GUIDE and architecture notes stay in the RustFox repository. Keep them out of the sidebar.
 
 Stack pins and the `starlight-versions` placeholder are in [NOTES.md](https://github.com/chinkan/rustfox-docs/blob/main/NOTES.md). Do not bump those pins in a content-only change.
