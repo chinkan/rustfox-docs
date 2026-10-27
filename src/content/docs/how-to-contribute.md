@@ -19,7 +19,7 @@ A decision that needs a record is an ADR in that `docs/adr/` tree, in the RustFo
 
 ## rustfox-docs content
 
-Repository: [chinkan/rustfox-docs](https://github.com/chinkan/rustfox-docs). These pages are the English user guide (Getting started, How to use, Commands, How to contribute).
+Repository: [chinkan/rustfox-docs](https://github.com/chinkan/rustfox-docs). These pages are the English user guide (Getting started, How to use, Commands, Features, Providers, Troubleshooting, and How to contribute).
 
 1. Fork and branch from `main`.
 2. Edit Markdown under `src/content/docs/`. The sidebar is the `sidebar` array in `astro.config.mjs`.
