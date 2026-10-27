@@ -14,7 +14,7 @@ Source, releases, and architecture decision records live in the [RustFox reposit
 3. Use it in [Telegram](/rustfox-docs/telegram/). Turn on the [portal](/rustfox-docs/portal/) when you want the browser UI.
 4. [Update](/rustfox-docs/update/) with `/selfupgrade`, or by replacing the binary.
 
-Spellings for the shell and the bot are on [Commands](/rustfox-docs/commands/).
+Spellings for the shell and the bot are on [Commands](/rustfox-docs/commands/). What the assistant can do is on [Features](/rustfox-docs/features/). Which provider is Active is on [Providers](/rustfox-docs/providers/). Locked failure symptoms are on [Troubleshooting](/rustfox-docs/troubleshooting/).
 
 Before the first install, and before every update, confirm that no stray `rustfox` process is using the same fox-home (`RUSTFOX_HOME`, default `~/.rustfox`). The same rule is on [Setup](/rustfox-docs/setup/) and [Update](/rustfox-docs/update/).
 

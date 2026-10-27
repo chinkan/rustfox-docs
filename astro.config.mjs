@@ -27,7 +27,7 @@ export default defineConfig({
 		starlight({
 			title: 'RustFox',
 			description:
-				'English user docs for RustFox, a self-hosted Telegram AI assistant. Latest tracks this repo’s main branch.',
+				'English user docs for RustFox, a self-hosted Telegram AI assistant: how to use, features, providers, and troubleshooting. Latest tracks this repo’s main branch.',
 			editLink: {
 				baseUrl: 'https://github.com/chinkan/rustfox-docs/edit/main/',
 			},
@@ -51,6 +51,9 @@ export default defineConfig({
 					],
 				},
 				{ label: 'Commands', slug: 'commands' },
+				{ label: 'Features', slug: 'features' },
+				{ label: 'Providers', slug: 'providers' },
+				{ label: 'Troubleshooting', slug: 'troubleshooting' },
 				{ label: 'How to contribute', slug: 'how-to-contribute' },
 			],
 			plugins: [
@@ -70,9 +73,9 @@ export default defineConfig({
 				starlightLlmsTxt({
 					projectName: 'RustFox',
 					description:
-						'Self-hosted Telegram AI assistant written in Rust. These files are the English user docs: getting started, how to use (setup, config, Telegram, portal, update), commands, and how to contribute. Latest docs track the rustfox-docs main branch.',
+						'Self-hosted Telegram AI assistant written in Rust. These files are the English user docs: getting started, how to use (setup, config, Telegram, portal, update), commands, features (tools, MCP, schedule, memory), providers (OpenRouter, OpenCode, xAI, Ollama), troubleshooting, and how to contribute. Latest docs track the rustfox-docs main branch.',
 					details:
-						'Architecture Decision Records stay in the RustFox repository under docs/adr/. This site links them and does not replace them. Docs archives lag RustFox release tags and are not a release gate. Before install or upgrade, stop the service and kill stray rustfox processes that share the same fox-home. rustfox --version and rustfox -V print the version and exit 0 without starting the bot. Prefer rustfox status for health. Do not use a bare rustfox as a probe. Old install, build-from-source, usage, and upgrade URLs redirect to the how-to pages.',
+						'Architecture Decision Records stay in the RustFox repository under docs/adr/. This site links them and does not replace them. Features is a capability catalog. Providers covers choose, credential, and Active or peer, including the OpenCode x-opencode-session header (MissingSessionID is not leave-Go, ADR-0043) and xAI bare xai refusal with no silent hop (ADR-0044). Troubleshooting covers those symptoms, HTTP 401 and 402 credits, and portal access. Docs archives lag RustFox release tags and are not a release gate. Before install or upgrade, stop the service and kill stray rustfox processes that share the same fox-home. rustfox --version and rustfox -V print the version and exit 0 without starting the bot. Prefer rustfox status for health. Do not use a bare rustfox as a probe. Old install, build-from-source, usage, and upgrade URLs redirect to the how-to pages.',
 					optionalLinks: [
 						{
 							label: 'RustFox repository',
@@ -88,6 +91,21 @@ export default defineConfig({
 							label: 'ADR-0046',
 							url: 'https://github.com/chinkan/RustFox/blob/main/docs/adr/0046-register-start-time-single-instance-flock-and-safe-version.md',
 							description: 'Start-time flock and safe --version (#289)',
+						},
+						{
+							label: 'ADR-0043',
+							url: 'https://github.com/chinkan/RustFox/blob/main/docs/adr/0043-opencode-detect-and-peer.md',
+							description: 'OpenCode peer, x-opencode-session, MissingSessionID is not leave-Go',
+						},
+						{
+							label: 'ADR-0044',
+							url: 'https://github.com/chinkan/RustFox/blob/main/docs/adr/0044-xai-active-provider.md',
+							description: 'xAI Active peer; bare xai refuses with no silent hop',
+						},
+						{
+							label: 'Portal access',
+							url: 'https://github.com/chinkan/RustFox/blob/main/docs/portal-access.md',
+							description: 'How to reach the portal on loopback, LAN, or Tailscale',
 						},
 					],
 					exclude: ['archive-placeholder', 'archive-placeholder/**'],
