@@ -1,0 +1,9 @@
+{
+  "sidebar": [
+    {
+      "label": "No release archive yet",
+      "slug": "index"
+    }
+  ],
+  "excluded": []
+}
