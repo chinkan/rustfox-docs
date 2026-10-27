@@ -29,6 +29,7 @@ How OpenCode can be Active is on [Providers](/rustfox-docs/providers/#opencode).
 | Boot: `default_provider = "…" is OpenCode without peer path` | The same gap at startup. Set `base_url` and `api_key` for Go Active, or choose `openrouter` / `ollama`. |
 | `MissingSessionID`, or a body that says `x-opencode-session` required (often HTTP 400) | The Go session header was missing. This is not leave-Go. RustFox does not switch you to OpenRouter because of it. Go chat and model-list requests send `x-opencode-session`. The chat transcript stays SQLite ([Features](/rustfox-docs/features/#memory)). |
 | HTTP 402, or HTTP 429 with `GoUsageLimitError`, `go_usage_limit`, or policy and budget | Leave-Go. RustFox may walk `[fallback] chain` toward OpenRouter DeepSeek (example entry `openrouter/deepseek/deepseek-chat`). A plain short 429 stays on OpenCode. |
+| A reply that is only `Output.`, `Emit.`, `Final.`, `Done.`, or a similar stub | Short filler while OpenCode Go is Active with DeepSeek. Prefer OpenRouter for chat. OpenCode can stay a peer. This is not leave-Go. See [Providers](/rustfox-docs/providers/#opencode). |
 | Status absent, no credentials, or ready with N models | Detect only: `opencode` binary, credentials, and `opencode models`. Ready does not by itself turn chat on. |
 
 ## xAI bare id and a missing key
