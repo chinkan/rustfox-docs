@@ -39,6 +39,8 @@ An empty base URL together with a non-empty key is filled with that Go URL. The 
 
 **Active.** With both base URL and API key, OpenCode can be Active (`default_provider = "opencode"`). Without both, it stays detect-only. Settings and the setup wizard then show one of three states: absent (no `opencode` binary), no credentials, or ready with N models from `opencode models`. Chat and Active selection in that state return a typed error (`OpenCode peer path not configured` / `OpenCode cannot be Active until peer path is configured`) and do not hop to another provider. Boot refuses when `default_provider` is OpenCode without the peer path: set `base_url` and `api_key`, or choose OpenRouter or Ollama.
 
+When OpenCode Go is Active with DeepSeek, a reply is occasionally only a short filler such as `Output.`, `Emit.`, `Final.`, or `Done.` (or a similar stub). Prefer OpenRouter for chat when that happens, or to avoid it. OpenCode can stay configured as a peer. This is not leave-Go, not `MissingSessionID`, and not a hard fail. Detect, leave-Go, and the fallback chain stay as they are.
+
 Scheduled runs while OpenCode is Active are not part of this lock. Prefer chat. See [Features](/rustfox-docs/features/#schedule).
 
 **`x-opencode-session`.** Every Go request (chat completions and the models list) sends a stable `x-opencode-session` header. The header is an opaque Go API requirement. The conversation transcript is SQLite, on [Features](/rustfox-docs/features/#memory). The symptom table is on [Troubleshooting](/rustfox-docs/troubleshooting/#opencode-session-and-leave-go).
