@@ -64,6 +64,7 @@ export default defineConfig({
 				{ label: 'Features', slug: 'features' },
 				{ label: 'Providers', slug: 'providers' },
 				{ label: 'Troubleshooting', slug: 'troubleshooting' },
+				{ label: 'Changelog', slug: 'changelog' },
 				{ label: 'How to contribute', slug: 'how-to-contribute' },
 			],
 			plugins: [
@@ -83,9 +84,9 @@ export default defineConfig({
 				starlightLlmsTxt({
 					projectName: 'RustFox',
 					description:
-						'Self-hosted Telegram AI assistant written in Rust. These files are the English user docs: getting started, how to use (setup, config, Telegram, portal, update), commands, features (Agent tools, MCP, schedule, memory), providers (OpenRouter, OpenCode, xAI, Ollama), troubleshooting, and how to contribute. Latest docs track the rustfox-docs main branch.',
+						'Self-hosted Telegram AI assistant written in Rust. These files are the English user docs: getting started, how to use (setup, config, Telegram, portal, update), commands, features (Agent tools, MCP, schedule, memory), providers (OpenRouter, OpenCode, xAI, Ollama), troubleshooting, changelog (shipped product changes, including 1.0.7), and how to contribute. Latest docs track the rustfox-docs main branch.',
 					details:
-						'Architecture decision records stay in the RustFox repository under docs/adr/ for developers. This site does not send end users to those files. Features is a capability catalog. Providers covers choose, credential, and Active or peer, including the OpenCode x-opencode-session header (MissingSessionID is not leave-Go) and a bare xai refusal with no silent hop. Troubleshooting covers those symptoms, HTTP 401 and 402 credits, and portal access. Docs archives lag RustFox release tags and are not a release gate. Before install or upgrade, stop the service and kill stray rustfox processes that share the same fox-home. rustfox --version and rustfox -V print the version and exit 0 without starting the bot. Prefer rustfox status for health. Do not use a bare rustfox as a probe. Old install, build-from-source, usage, and upgrade URLs redirect to the how-to pages.',
+						'Architecture decision records stay in the RustFox repository under docs/adr/ for developers. This site does not send end users to those files. Features is a capability catalog. Providers covers choose, credential, and Active or peer, including the OpenCode x-opencode-session header (MissingSessionID is not leave-Go) and a bare xai refusal with no silent hop. Troubleshooting covers those symptoms, HTTP 401 and 402 credits, and portal access. Changelog summarizes shipped product changes for recent releases, including 1.0.7, and links the RustFox CHANGELOG and GitHub Releases. It does not link architecture decision records. Docs archives lag RustFox release tags and are not a release gate. Before install or upgrade, stop the service and kill stray rustfox processes that share the same fox-home. rustfox --version and rustfox -V print the version and exit 0 without starting the bot. Prefer rustfox status for health. Do not use a bare rustfox as a probe. Old install, build-from-source, usage, and upgrade URLs redirect to the how-to pages.',
 					optionalLinks: [
 						{
 							label: 'RustFox repository',
