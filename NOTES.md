@@ -11,7 +11,7 @@ The config schema rejects an empty `versions` array (`At least one version of th
 - `src/content/docs/archive-placeholder/`
 - `src/content/versions/archive-placeholder.json`
 
-**Latest / current** is this repository's `main`. The scaffold label is "No release archive yet". `starlight-llms-txt` 0.12 applies `exclude` only to `llms-small.txt`, so the scaffold page is omitted there and still appears in `llms-full.txt`. Its version `redirect` is `root`, because the scaffold has only an index page. `same-page` would 404 (for example `/upgrade/` → `/archive-placeholder/upgrade/`). Add a real archive after a RustFox GitHub Release tag, one docs version at a time, and choose `same-page` only when that archive has the same pages. Docs lag is expected. Docs versioning is not a release gate.
+**Latest / current** is this repository's `main`. The scaffold label is "No release archive yet". `starlight-llms-txt` 0.12 applies `exclude` only to `llms-small.txt`, so the scaffold page is omitted there and still appears in `llms-full.txt`. Its version `redirect` is `root`, because the scaffold has only an index page. `same-page` would 404 (for example `/update/` → `/archive-placeholder/update/`). Add a real archive after a RustFox GitHub Release tag, one docs version at a time, and choose `same-page` only when that archive has the same pages. Docs lag is expected. Docs versioning is not a release gate.
 
 ## ADRs
 
