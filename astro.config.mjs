@@ -14,6 +14,15 @@ const site = 'https://chinkan.github.io/rustfox-docs/';
 export default defineConfig({
 	site,
 	base: '/rustfox-docs',
+	// Static meta-refresh redirects are not prefixed with `base`. Destinations
+	// include `/rustfox-docs` so bookmarks stay on this project site.
+	// `build-from-source` keeps the hash so it opens the advanced section.
+	redirects: {
+		'/install': '/rustfox-docs/setup/',
+		'/build-from-source': '/rustfox-docs/setup/#build-from-source',
+		'/usage': '/rustfox-docs/config/',
+		'/upgrade': '/rustfox-docs/update/',
+	},
 	integrations: [
 		starlight({
 			title: 'RustFox',
@@ -31,10 +40,18 @@ export default defineConfig({
 			],
 			sidebar: [
 				{ label: 'Getting started', link: '/' },
-				{ label: 'Install', slug: 'install' },
-				{ label: 'Build from source', slug: 'build-from-source' },
-				{ label: 'Usage', slug: 'usage' },
-				{ label: 'Upgrade & selfupgrade', slug: 'upgrade' },
+				{
+					label: 'How to use',
+					items: [
+						{ label: 'Setup', slug: 'setup' },
+						{ label: 'Config', slug: 'config' },
+						{ label: 'Telegram', slug: 'telegram' },
+						{ label: 'Portal', slug: 'portal' },
+						{ label: 'Update', slug: 'update' },
+					],
+				},
+				{ label: 'Commands', slug: 'commands' },
+				{ label: 'How to contribute', slug: 'how-to-contribute' },
 			],
 			plugins: [
 				// `versions` cannot be empty (plugin schema). The slug below is a
@@ -53,9 +70,9 @@ export default defineConfig({
 				starlightLlmsTxt({
 					projectName: 'RustFox',
 					description:
-						'Self-hosted Telegram AI assistant written in Rust. These files are the English user docs (install, build, usage, upgrade). Latest docs track the rustfox-docs main branch.',
+						'Self-hosted Telegram AI assistant written in Rust. These files are the English user docs: getting started, how to use (setup, config, Telegram, portal, update), commands, and how to contribute. Latest docs track the rustfox-docs main branch.',
 					details:
-						'Architecture Decision Records stay in the RustFox repository under docs/adr/. This site links them and does not replace them. Docs archives lag RustFox release tags and are not a release gate. Before install or upgrade, stop the service and kill stray rustfox processes that share the same fox-home. rustfox --version and rustfox -V print the version and exit 0 without starting the bot. Prefer rustfox status for health. Do not use a bare rustfox as a probe.',
+						'Architecture Decision Records stay in the RustFox repository under docs/adr/. This site links them and does not replace them. Docs archives lag RustFox release tags and are not a release gate. Before install or upgrade, stop the service and kill stray rustfox processes that share the same fox-home. rustfox --version and rustfox -V print the version and exit 0 without starting the bot. Prefer rustfox status for health. Do not use a bare rustfox as a probe. Old install, build-from-source, usage, and upgrade URLs redirect to the how-to pages.',
 					optionalLinks: [
 						{
 							label: 'RustFox repository',
