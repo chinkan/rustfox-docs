@@ -5,6 +5,23 @@ description: RustFox OS CLI and the Active Telegram bot commands. Planned superv
 
 Two lists: the shell, then the Telegram bot. Descriptions match the shipped CLI and [GUIDE.md — Bot commands](https://github.com/chinkan/RustFox/blob/main/docs/GUIDE.md#bot-commands). This page does not add commands beyond that inventory.
 
+```mermaid
+flowchart LR
+  subgraph cli [OS CLI]
+    direction TB
+    c1["bare rustfox starts the bot"]
+    c2["status, start, stop, restart"]
+    c3["--version and -V exit 0"]
+  end
+  subgraph tg [Telegram]
+    direction TB
+    t1["/models /config /portal /agents"]
+    t2["/selfupgrade bare, main, or release"]
+    t3["/restart is not an upgrade"]
+  end
+  cli ~~~ tg
+```
+
 ## OS CLI
 
 - **Bare `rustfox` and `rustfox run`.** Foreground start. `run` is the same as a bare `rustfox`. Both start the bot. They are the wrong health check.

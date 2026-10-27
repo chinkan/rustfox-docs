@@ -5,6 +5,17 @@ description: Install a RustFox release binary, or build from source, and clear s
 
 Pick one install path. Stop anything already using the fox-home before you replace the binary. See [Before you install or update](#before-you-install-or-update).
 
+```mermaid
+flowchart TD
+  start[Before you install] --> stop[Stop the service]
+  stop --> kill[Kill stray rustfox processes on the same fox-home]
+  kill --> path{Release binary or source?}
+  path -->|Release| release[Download and unpack a GitHub Release]
+  path -->|Source| source["Clone RustFox and run build-all.sh --install"]
+  release --> once[Start once]
+  source --> once
+```
+
 ## Download a release
 
 Download an archive from the [Releases page](https://github.com/chinkan/RustFox/releases):
@@ -19,7 +30,7 @@ tar xzf rustfox-*.tar.gz
 - **Unsigned by default.** GitHub [Releases](https://github.com/chinkan/RustFox/releases) Windows zips are **unsigned** today. Treat every published `rustfox.exe` like any other unsigned build under Smart App Control.
 - **Smart App Control (SAC).** Unsigned `rustfox.exe` builds are blocked on Windows with SAC turned on, and there is no "Run anyway" button. If you build from source and hit `os error 4551`, build on a machine that does not enforce SAC. Turning Smart App Control off is not the recommended fix. Turning it back on can require a Windows reset when optional diagnostic data is off.
 - **SmartScreen.** An unsigned download may still show "Windows protected your PC". Click **More info**, then **Run anyway**. This is separate from SAC.
-- **Code signing (planned, deferred).** [ADR-0027](https://github.com/chinkan/RustFox/blob/main/docs/adr/0027-windows-code-signing.md) locks Option A (SignPath Foundation) as the plan. Implementation is deferred: CI does not run SignPath or `REQUIRE_SIGNING` yet. Windows release binaries stay unsigned until the maintainer resumes that work. Planned credit when live: free code signing provided by SignPath.io, certificate by SignPath Foundation.
+- **Code signing (planned, deferred).** The plan is Option A (SignPath Foundation). Implementation is deferred: CI does not run SignPath or `REQUIRE_SIGNING` yet. Windows release binaries stay unsigned until the maintainer resumes that work. Planned credit when live: free code signing provided by SignPath.io, certificate by SignPath Foundation.
 - **Privacy.** RustFox is self-hosted. Depending on your config it may talk to **Telegram** (bot API) and an LLM provider such as **OpenRouter** (or a local Ollama / OpenAI-compatible endpoint you choose). SignPath is not used at runtime. It would only sign the Windows release binary in CI if signing is later enabled.
 
 ## Before you install or update
@@ -33,7 +44,7 @@ Do this before the first install and before `cargo install` or any other step th
 
 `rustfox --version` and `rustfox -V` print the package version and exit 0. They do not start the bot or the scheduler. Prefer `rustfox status` for health. A bare `rustfox` starts the bot.
 
-One fox-home maps to an exclusive **flock** on `rustfox.lock` (one bot and scheduler). A second start with the same home fails fast. Different `RUSTFOX_HOME` values may run side by side. Service verbs (`status`, `restart`, `stop`, `install`) and `--setup` stay usable while a bot is running. Flock is a belt. It does not replace stop plus kill-all before install or update. Decision record: [ADR-0046](https://github.com/chinkan/RustFox/blob/main/docs/adr/0046-register-start-time-single-instance-flock-and-safe-version.md) ([#289](https://github.com/chinkan/RustFox/issues/289)).
+One fox-home maps to an exclusive **flock** on `rustfox.lock` (one bot and scheduler). A second start with the same home fails fast. Different `RUSTFOX_HOME` values may run side by side. Service verbs (`status`, `restart`, `stop`, `install`) and `--setup` stay usable while a bot is running. Flock is a belt. It does not replace stop plus kill-all before install or update.
 
 Service verbs are listed on [Commands](/rustfox-docs/commands/). The same stop and kill-stray steps apply on [Update](/rustfox-docs/update/).
 

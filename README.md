@@ -4,7 +4,7 @@ English user docs for [RustFox](https://github.com/chinkan/RustFox), published w
 
 Public site (no custom domain): <https://chinkan.github.io/rustfox-docs/>
 
-**Latest** docs are this repo's `main` branch. Architecture decision records stay in the RustFox repo under [`docs/adr/`](https://github.com/chinkan/RustFox/tree/main/docs/adr). This site links them. It does not copy the ADR tree.
+**Latest** docs are this repo's `main` branch. Architecture decision records stay in the RustFox repo under `docs/adr/` for contributors. Published pages do not link ADR bodies, and this site does not copy the ADR tree.
 
 ## Stack
 
@@ -14,6 +14,8 @@ Public site (no custom domain): <https://chinkan.github.io/rustfox-docs/>
 | `@astrojs/starlight` | 0.42.7 |
 | `starlight-llms-txt` | 0.12.0 (peer `@astrojs/starlight` >= 0.41; emits `llms.txt`, `llms-full.txt`, `llms-small.txt`) |
 | `starlight-versions` | **0.10.1** (pinned) |
+| `astro-mermaid` | 2.2.0 (`mermaid()` is registered before Starlight; `autoTheme` follows light and dark) |
+| `mermaid` | 12.2.0 |
 
 `starlight-versions` is an early plugin and can break on upgrade. Read [NOTES.md](NOTES.md) before bumping it. Node.js **22.12** or newer is required.
 

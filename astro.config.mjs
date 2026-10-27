@@ -1,6 +1,7 @@
 // @ts-check
 import starlight from '@astrojs/starlight';
 import { defineConfig } from 'astro/config';
+import mermaid from 'astro-mermaid';
 import starlightLlmsTxt from 'starlight-llms-txt';
 import starlightVersions from 'starlight-versions';
 
@@ -24,6 +25,15 @@ export default defineConfig({
 		'/upgrade': '/rustfox-docs/update/',
 	},
 	integrations: [
+		// astro-mermaid must run before Starlight so Sätteri sees the diagram transform.
+		mermaid({
+			autoTheme: true,
+			// Mermaid 12 reads the top-level flag. Nested flowchart.htmlLabels
+			// still emits HTML labels, which clip the command lanes.
+			mermaidConfig: {
+				htmlLabels: false,
+			},
+		}),
 		starlight({
 			title: 'RustFox',
 			description:
@@ -75,32 +85,17 @@ export default defineConfig({
 					description:
 						'Self-hosted Telegram AI assistant written in Rust. These files are the English user docs: getting started, how to use (setup, config, Telegram, portal, update), commands, features (tools, MCP, schedule, memory), providers (OpenRouter, OpenCode, xAI, Ollama), troubleshooting, and how to contribute. Latest docs track the rustfox-docs main branch.',
 					details:
-						'Architecture Decision Records stay in the RustFox repository under docs/adr/. This site links them and does not replace them. Features is a capability catalog. Providers covers choose, credential, and Active or peer, including the OpenCode x-opencode-session header (MissingSessionID is not leave-Go, ADR-0043) and xAI bare xai refusal with no silent hop (ADR-0044). Troubleshooting covers those symptoms, HTTP 401 and 402 credits, and portal access. Docs archives lag RustFox release tags and are not a release gate. Before install or upgrade, stop the service and kill stray rustfox processes that share the same fox-home. rustfox --version and rustfox -V print the version and exit 0 without starting the bot. Prefer rustfox status for health. Do not use a bare rustfox as a probe. Old install, build-from-source, usage, and upgrade URLs redirect to the how-to pages.',
+						'Architecture decision records stay in the RustFox repository under docs/adr/ for developers. This site does not send end users to those files. Features is a capability catalog. Providers covers choose, credential, and Active or peer, including the OpenCode x-opencode-session header (MissingSessionID is not leave-Go) and a bare xai refusal with no silent hop. Troubleshooting covers those symptoms, HTTP 401 and 402 credits, and portal access. Docs archives lag RustFox release tags and are not a release gate. Before install or upgrade, stop the service and kill stray rustfox processes that share the same fox-home. rustfox --version and rustfox -V print the version and exit 0 without starting the bot. Prefer rustfox status for health. Do not use a bare rustfox as a probe. Old install, build-from-source, usage, and upgrade URLs redirect to the how-to pages.',
 					optionalLinks: [
 						{
 							label: 'RustFox repository',
 							url: 'https://github.com/chinkan/RustFox',
-							description: 'Source, releases, and the ADR tree',
+							description: 'Source and GitHub releases',
 						},
 						{
-							label: 'ADR-0030',
-							url: 'https://github.com/chinkan/RustFox/blob/main/docs/adr/0030-selfupgrade-main-or-release.md',
-							description: 'Self-upgrade main, release, or bare auto',
-						},
-						{
-							label: 'ADR-0046',
-							url: 'https://github.com/chinkan/RustFox/blob/main/docs/adr/0046-register-start-time-single-instance-flock-and-safe-version.md',
-							description: 'Start-time flock and safe --version (#289)',
-						},
-						{
-							label: 'ADR-0043',
-							url: 'https://github.com/chinkan/RustFox/blob/main/docs/adr/0043-opencode-detect-and-peer.md',
-							description: 'OpenCode peer, x-opencode-session, MissingSessionID is not leave-Go',
-						},
-						{
-							label: 'ADR-0044',
-							url: 'https://github.com/chinkan/RustFox/blob/main/docs/adr/0044-xai-active-provider.md',
-							description: 'xAI Active peer; bare xai refuses with no silent hop',
+							label: 'RustFox GUIDE',
+							url: 'https://github.com/chinkan/RustFox/blob/main/docs/GUIDE.md',
+							description: 'Longer operator notes, including self-upgrade and commands',
 						},
 						{
 							label: 'Portal access',

@@ -11,6 +11,18 @@ A rejected key is HTTP 401 or 403. RustFox does not walk `[fallback] chain` on t
 
 Commented blocks for each provider are in [`config.example.toml`](https://github.com/chinkan/RustFox/blob/main/config.example.toml).
 
+```mermaid
+flowchart TD
+  active[Active provider answers chat and runs tools]
+  active --> openrouter[OpenRouter]
+  active --> opencode[OpenCode Go, when base URL and key are set]
+  active --> xai[xAI, when key and base URL are set]
+  active --> ollama[Ollama]
+  opencode -->|MissingSessionID| stay[Stay on OpenCode. This is not leave-Go]
+  opencode -->|HTTP 402 or a Go usage limit| chain[Walk the fallback chain]
+  xai -->|Bare xai with no key or base URL| refuse[Refuse. No silent hop]
+```
+
 ## OpenRouter
 
 OpenRouter is the default path. The wizard asks for an OpenRouter key and a model. The default model is `moonshotai/kimi-k2.6`. Keys are issued at [openrouter.ai/keys](https://openrouter.ai/keys). Model ids are listed at [openrouter.ai/models](https://openrouter.ai/models).
@@ -29,7 +41,7 @@ An empty base URL together with a non-empty key is filled with that Go URL. The 
 
 Scheduled runs while OpenCode is Active are not part of this lock. Prefer chat. See [Features](/rustfox-docs/features/#schedule).
 
-**`x-opencode-session`.** Every Go request (chat completions and the models list) sends a stable `x-opencode-session` header. The header is an opaque Go API requirement. The conversation transcript is SQLite, on [Features](/rustfox-docs/features/#memory). Decision: [ADR-0043](https://github.com/chinkan/RustFox/blob/main/docs/adr/0043-opencode-detect-and-peer.md).
+**`x-opencode-session`.** Every Go request (chat completions and the models list) sends a stable `x-opencode-session` header. The header is an opaque Go API requirement. The conversation transcript is SQLite, on [Features](/rustfox-docs/features/#memory). The symptom table is on [Troubleshooting](/rustfox-docs/troubleshooting/#opencode-session-and-leave-go).
 
 **MissingSessionID is not leave-Go.** A body of `MissingSessionID` (HTTP 400, `x-opencode-session` required) stays on OpenCode. It means the session header was missing. It is not a signal to switch providers. Leave-Go is only:
 
@@ -51,7 +63,7 @@ With a key and a base URL, xAI can be Active. It may write `default_provider`, d
 - Chat: `xAI is misconfigured (missing API key or base URL); chat is not available`
 - Active: `xAI cannot be Active while misconfigured (set api_key + base_url)`
 
-Boot refuses when `default_provider` is xAI without `api_key` and `base_url`. Decision: [ADR-0044](https://github.com/chinkan/RustFox/blob/main/docs/adr/0044-xai-active-provider.md).
+Boot refuses when `default_provider` is xAI without `api_key` and `base_url`. The messages are on [Troubleshooting](/rustfox-docs/troubleshooting/#xai-bare-id-and-a-missing-key).
 
 ## Ollama
 

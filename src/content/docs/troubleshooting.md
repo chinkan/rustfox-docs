@@ -3,11 +3,25 @@ title: Troubleshooting
 description: OpenCode session and credit symptoms, xAI refusal, HTTP 401 and 402, and portal access.
 ---
 
-These are the symptoms with a locked meaning. Choosing a provider is on [Providers](/rustfox-docs/providers/). Turning the browser UI on is on [Portal](/rustfox-docs/portal/).
+These are the symptoms with a locked meaning. Choosing a provider is on [Providers](/rustfox-docs/providers/). Turning the browser UI on is on [Portal](/rustfox-docs/portal/). Which URL to open is the [portal access runbook](https://github.com/chinkan/RustFox/blob/main/docs/portal-access.md).
+
+```mermaid
+flowchart TD
+  see[What you see] --> oc{OpenCode?}
+  oc -->|MissingSessionID| stay[Stay on OpenCode. Not leave-Go]
+  oc -->|402 or a Go usage limit| leave[Leave-Go. Walk the fallback chain]
+  oc -->|Peer path not configured| peer[Set the Go URL and key, or switch provider]
+  oc -->|No| xai{xAI misconfigured?}
+  xai -->|Yes| refuse[Refuse. No silent hop]
+  xai -->|No| http{HTTP status?}
+  http -->|401 or 403| auth[Rejected key. Do not walk the chain]
+  http -->|402| credits[Credits. The chain may be walked]
+  http -->|Portal will not connect| portal[Check bind, token, and portal access]
+```
 
 ## OpenCode session and leave-Go
 
-Decision record: [ADR-0043](https://github.com/chinkan/RustFox/blob/main/docs/adr/0043-opencode-detect-and-peer.md).
+How OpenCode can be Active is on [Providers](/rustfox-docs/providers/#opencode).
 
 | What you see | What it means |
 | --- | --- |
@@ -19,7 +33,7 @@ Decision record: [ADR-0043](https://github.com/chinkan/RustFox/blob/main/docs/ad
 
 ## xAI bare id and a missing key
 
-Decision record: [ADR-0044](https://github.com/chinkan/RustFox/blob/main/docs/adr/0044-xai-active-provider.md).
+How a configured xAI peer behaves is on [Providers](/rustfox-docs/providers/#xai).
 
 | What you see | What it means |
 | --- | --- |
