@@ -4,7 +4,7 @@ English user docs for [RustFox](https://github.com/chinkan/RustFox), published w
 
 Public site (no custom domain): <https://chinkan.github.io/rustfox-docs/>
 
-**Latest** docs are this repo's `main` branch. Architecture decision records stay in the RustFox repo under `docs/adr/` for contributors. Published pages do not link ADR bodies, and this site does not copy the ADR tree.
+**Latest** docs are this repo's `main` branch (tip after **v1.0.8**). The version switcher includes a frozen **v1.0.8** archive for that GitHub Release tag. Architecture decision records stay in the RustFox repo under `docs/adr/` for contributors. Published pages do not link ADR bodies, and this site does not copy the ADR tree.
 
 ## Stack
 

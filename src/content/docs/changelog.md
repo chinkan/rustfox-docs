@@ -1,11 +1,48 @@
 ---
 title: Changelog
-description: What changed for people running RustFox, from the shipped 1.0.7 release back through 1.0.2.
+description: What changed for people running RustFox, from the shipped 1.0.8 release back through 1.0.2.
 ---
 
 This page is the short product summary. The full list is the [RustFox CHANGELOG](https://github.com/chinkan/RustFox/blob/main/CHANGELOG.md). Tags and release assets are on [GitHub Releases](https://github.com/chinkan/RustFox/releases).
 
 Behavior that already has a home stays there: [Providers](/rustfox-docs/providers/), [Troubleshooting](/rustfox-docs/troubleshooting/), [Update](/rustfox-docs/update/), [Features](/rustfox-docs/features/), [Commands](/rustfox-docs/commands/), and [Portal](/rustfox-docs/portal/).
+
+## 1.0.8
+
+Shipped as [v1.0.8](https://github.com/chinkan/RustFox/releases/tag/v1.0.8). Safer `/selfupgrade release` on Unix, a pixel office with honest Agent seats in the portal, scheduler and chat-lane fixes, and tighter guards on model replies. No config migration from 1.0.7 — use Telegram `/selfupgrade` or the steps on [Update](/rustfox-docs/update/).
+
+### Update
+
+- **`/selfupgrade release` re-register** stashes the absolute binary path before `self_replace`, runs **stop plus kill-all** for the same fox-home, then re-registers from that stash. Upgrading **from** a pre-stash **1.0.7** release binary may still fail once on the first `/selfupgrade release`; after the binary is replaced, run **`rustfox install` once**, then later upgrades use the stash path. See [Update](/rustfox-docs/update/#self-upgrade) and [Troubleshooting](/rustfox-docs/troubleshooting/#self-upgrade).
+- **Unix release archives** in **1.0.8+** ship a top-level `rustfox` in the `.tar.gz`. Manual extract is only for older binaries that still hit a missing-path error.
+
+### Portal
+
+- **Pixel office Agent seats** show main and sub-agents in a small game-style office. Busy agents move to a desk; idle agents roam unless you choose **Reduce motion** or **Disable office animations** in the portal.
+- **`GET /api/agents`** marks `running` from live signals only (main from `is_processing`; named seats from in-flight `invoke_agent` / `spawn_agents`). Rows expose `live_signal` and `definition_only` so the UI does not fake busy state.
+
+### Chat
+
+- **OpenCode Active** strips or recovers DeepSeek-style DSML in `content` when `tool_calls` is empty, so Telegram does not receive raw markup.
+- **Short meta-token replies** (`{Output}`, `{Final}`, and similar stubs) abort to a clarify message instead of posting nonsense.
+- **Lost-context guards** widen after empty-progress rounds and on final replies, including phrases like `訊息係空`, `掉失`, and `冇接到`.
+- **Protected tail** never advances past the last user message mid-turn, so a huge tool burst does not drop your current ask from the model view.
+- **Cold-intro** detection adds `冇接到` / `冇接到內容` and cheap greeting forms.
+
+### Schedule
+
+- A Telegram message **during a scheduled run** starts on the **interactive lane right away**. It is not held until the job finishes and it is not steered into the schedule loop. The schedule still waits to **start** until the interactive lane is idle.
+- A run is **`completed` only when verified** (real result or a fresh artifact). Guard rewrites, clarify-only replies, and similar unverified stops are **`failed`** and use the manual dead-letter gate, not silent success.
+- **`next_run_at`** advances after each recurring fire in that task's timezone. Startup recomputes stale recurring rows.
+- **Same calendar day**, a later run of the same task can continue from a saved day progress file instead of redoing finished phases. Timeout, max-iterations, and guard stops update that file; verified completion clears it.
+
+### MCP
+
+- The MCP client library moves to **rmcp 3.7** with the same stdio and HTTP transports. No operator action unless you pinned custom MCP wiring outside config.
+
+### Windows
+
+The Windows binary in this release is not code-signed. With Smart App Control on, unsigned `rustfox.exe` cannot be opened, and there is no Run anyway. Leave Smart App Control on, or build RustFox on a machine that does not enforce it. If SmartScreen shows "Windows protected your PC", choose More info, then Run anyway.
 
 ## 1.0.7
 

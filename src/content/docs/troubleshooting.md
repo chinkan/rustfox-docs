@@ -75,4 +75,5 @@ LAN bind is for a trusted network. Keep port 8090 blocked on any router firewall
 
 | What you see | What to do |
 | --- | --- |
-| On Unix, `/selfupgrade release` (or the self-upgrade release path) reports that it could not find a binary named `rustfox` in the release asset (`Could not find the required path in the archive: "rustfox"`) | Download the platform `.tar.gz` from [GitHub Releases](https://github.com/chinkan/RustFox/releases), run `tar xzf` on it, and replace the installed binary with the extracted `rustfox`. The steps are on [Update](/rustfox-docs/update/#self-upgrade). |
+| On Unix, an **older** binary reports that it could not find `rustfox` in the release asset (`Could not find the required path in the archive: "rustfox"`) | Download the platform `.tar.gz` from [GitHub Releases](https://github.com/chinkan/RustFox/releases), run `tar xzf` on it, and replace the installed binary. **1.0.8+** assets already include `rustfox` at the top level. Steps are on [Update](/rustfox-docs/update/#self-upgrade). |
+| First `/selfupgrade release` from a pre-stash **1.0.7** binary fails after replace (executable path / re-register) | Run **`rustfox install` once** manually, then use `/selfupgrade` again. Later upgrades on **1.0.8+** stash the path before replace. [Update](/rustfox-docs/update/#self-upgrade). |

@@ -5,7 +5,7 @@ description: What RustFox is, and the short path through setup, config, Telegram
 
 RustFox is an open-source, self-hosted Telegram AI assistant written in Rust. It runs in Telegram, calls sandboxed tools, and keeps conversation memory in SQLite. The default model path is OpenRouter. Ollama is the local option. Setup is a single binary plus a wizard, with an optional systemd, launchd, or Windows service.
 
-Source, releases, and architecture decision records live in the [RustFox repository](https://github.com/chinkan/RustFox). This site is the English user guide. **Latest** is this docs repository's [`main`](https://github.com/chinkan/rustfox-docs) branch. A docs archive is added after a RustFox GitHub Release. Docs may lag the tag. Versioning is not a release gate.
+Source, releases, and architecture decision records live in the [RustFox repository](https://github.com/chinkan/RustFox). This site is the English user guide. **Latest** is this docs repository's [`main`](https://github.com/chinkan/rustfox-docs) branch (work after **v1.0.8**). The version switcher includes a **v1.0.8** archive frozen at that GitHub Release tag. Docs may lag a tag. Versioning is not a release gate.
 
 ## Path
 

@@ -16,7 +16,9 @@ Longer notes: [GUIDE.md — self-upgrade](https://github.com/chinkan/RustFox/blo
 | Telegram | `/selfupgrade release` | download latest GitHub release binary |
 | Portal Settings | `auto` \| `main` \| `release` | same mapping as Telegram |
 
-On Unix, `/selfupgrade release` (or the self-upgrade release path) may report that it could not find a binary named `rustfox` in the release asset (`Could not find the required path in the archive: "rustfox"`). Download the platform `.tar.gz` from [GitHub Releases](https://github.com/chinkan/RustFox/releases), run `tar xzf` on it, and replace the installed binary with the extracted `rustfox`.
+On **1.0.8+**, Unix release `.tar.gz` assets include a top-level `rustfox` binary. If you still run an **older** binary and `/selfupgrade release` reports that it could not find `rustfox` in the archive, download the platform `.tar.gz` from [GitHub Releases](https://github.com/chinkan/RustFox/releases), run `tar xzf` on it, and replace the installed binary with the extracted `rustfox`.
+
+Upgrading **from** a pre-stash **1.0.7** release binary may fail once on the first `/selfupgrade release` after replace (stale executable path). Run **`rustfox install` once** manually; later upgrades use the stash path. See [Troubleshooting](/rustfox-docs/troubleshooting/#self-upgrade).
 
 Telegram accepts only a bare `/selfupgrade`, `/selfupgrade main`, or `/selfupgrade release`. Any other argument is rejected. It is not treated as a git branch name. Other branches stay on the built-in `self_upgrade` tool (`mode=source` plus `branch`), not on the Telegram command.
 

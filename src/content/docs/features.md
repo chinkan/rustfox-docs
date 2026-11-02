@@ -43,6 +43,8 @@ A task opened in the portal is stored as user `web` and platform `portal`. That 
 
 One scheduled agent call has a wall-clock timeout (`scheduler.run_timeout_secs`, default 900 seconds). The runner is single-consumer. Values under 60 seconds are rejected at config load. `0` means the default.
 
+While a schedule is **running**, a new Telegram message starts on the **interactive** lane immediately. It is not queued until the job finishes and it is not steered into the schedule loop. The schedule still waits to **start** until the interactive lane is idle. A run counts as **completed** only when the result is verified; guard rewrites and clarify-only stops are **failed** and use the manual dead-letter gate. Recurring tasks advance **`next_run_at`** after each fire in that task's timezone. A second run the same calendar day can continue from a day progress file when one exists.
+
 The Tasks page is on [Portal](/rustfox-docs/portal/). Per-bot rules are in [GUIDE.md — Per-bot schedules](https://github.com/chinkan/RustFox/blob/main/docs/GUIDE.md#per-bot-schedules).
 
 When Active is xAI, the scheduler can run. Scheduled runs while OpenCode is Active are not part of the OpenCode peer lock. Provider choice is on [Providers](/rustfox-docs/providers/).
