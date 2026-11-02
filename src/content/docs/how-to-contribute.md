@@ -29,4 +29,4 @@ Repository: [chinkan/rustfox-docs](https://github.com/chinkan/rustfox-docs). The
 
 Do not vendor the ADR tree into `src/content/docs/`. End-user pages explain the behavior in plain language. They do not link ADR bodies. Point readers to [GUIDE.md](https://github.com/chinkan/RustFox/blob/main/docs/GUIDE.md), [portal-access.md](https://github.com/chinkan/RustFox/blob/main/docs/portal-access.md), or an in-site page such as Config, Providers, Commands, Portal, or Update. The public site is English-only. GUIDE and architecture notes stay in the RustFox repository. Keep them out of the sidebar.
 
-Stack pins and the `starlight-versions` placeholder are in [NOTES.md](https://github.com/chinkan/rustfox-docs/blob/main/NOTES.md). Do not bump those pins in a content-only change.
+Stack pins and the `starlight-versions` archive workflow are in [NOTES.md](https://github.com/chinkan/rustfox-docs/blob/main/NOTES.md). Do not bump those pins in a content-only change. After a RustFox GitHub Release tag, add or refresh `src/content/docs/<tag>/` and `src/content/versions/<tag>.json` in a dedicated pull request.

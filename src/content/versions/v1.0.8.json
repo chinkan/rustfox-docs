@@ -1,0 +1,25 @@
+{
+  "sidebar": [
+    {
+      "label": "Getting started",
+      "slug": "index"
+    },
+    {
+      "label": "How to use",
+      "items": [
+        { "label": "Setup", "slug": "setup" },
+        { "label": "Config", "slug": "config" },
+        { "label": "Telegram", "slug": "telegram" },
+        { "label": "Portal", "slug": "portal" },
+        { "label": "Update", "slug": "update" }
+      ]
+    },
+    { "label": "Commands", "slug": "commands" },
+    { "label": "Features", "slug": "features" },
+    { "label": "Providers", "slug": "providers" },
+    { "label": "Troubleshooting", "slug": "troubleshooting" },
+    { "label": "Changelog", "slug": "changelog" },
+    { "label": "How to contribute", "slug": "how-to-contribute" }
+  ],
+  "excluded": []
+}

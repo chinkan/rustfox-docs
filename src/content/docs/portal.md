@@ -34,12 +34,14 @@ If you have not set a hash, the startup log can print a temporary token (`journa
 | Page | What you can do |
 | --- | --- |
 | Chat | Talk to the agent in the browser and watch tool calls stream. History is separate from Telegram |
-| Agents | Browse configured sub-agents |
+| Agents | Browse configured sub-agents. The **pixel office** shows Agent seats: idle agents roam, busy agents sit at a desk. Running state follows live signals only, not a static label |
 | Memory | Search the conversation and knowledge store, and browse recent entries |
 | Tasks | List cron and one-shot tasks, view run history, pause or resume |
 | Settings | Inspect the active config (secrets masked). Self-upgrade here uses the same `auto`, `main`, and `release` choices as Telegram |
 
 Those upgrade choices are on [Update](/rustfox-docs/update/). Ask the bot `/portal` when you want the URLs it can see on this host ([Commands](/rustfox-docs/commands/)).
+
+In the portal, **Reduce motion** or **Disable office animations** stops idle roam in the pixel office. Agent rows still show honest busy state from the API (`live_signal` / `definition_only`).
 
 ## Reach it from another device
 

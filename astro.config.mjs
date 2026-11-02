@@ -23,6 +23,8 @@ export default defineConfig({
 		'/build-from-source': '/rustfox-docs/setup/#build-from-source',
 		'/usage': '/rustfox-docs/config/',
 		'/upgrade': '/rustfox-docs/update/',
+		'/archive-placeholder': '/rustfox-docs/v1.0.8/',
+		'/archive-placeholder/': '/rustfox-docs/v1.0.8/',
 	},
 	integrations: [
 		// astro-mermaid must run before Starlight so Sätteri sees the diagram transform.
@@ -37,7 +39,7 @@ export default defineConfig({
 		starlight({
 			title: 'RustFox',
 			description:
-				'English user docs for RustFox, a self-hosted Telegram AI assistant: how to use, features, providers, and troubleshooting. Latest tracks this repo’s main branch.',
+				'English user docs for RustFox, a self-hosted Telegram AI assistant: how to use, features, providers, and troubleshooting. Latest tracks this repo’s main branch after v1.0.8; v1.0.8 is archived on the version switcher.',
 			editLink: {
 				baseUrl: 'https://github.com/chinkan/rustfox-docs/edit/main/',
 			},
@@ -74,19 +76,18 @@ export default defineConfig({
 					current: { label: 'Latest' },
 					versions: [
 						{
-							slug: 'archive-placeholder',
-							label: 'No release archive yet',
-							// Only an index page exists. same-page would 404 (for example /upgrade/ → /archive-placeholder/upgrade/).
-							redirect: 'root',
+							slug: 'v1.0.8',
+							label: 'v1.0.8',
+							redirect: 'same-page',
 						},
 					],
 				}),
 				starlightLlmsTxt({
 					projectName: 'RustFox',
 					description:
-						'Self-hosted Telegram AI assistant written in Rust. These files are the English user docs: getting started, how to use (setup, config, Telegram, portal, update), commands, features (Agent tools, MCP, schedule, memory), providers (OpenRouter, OpenCode, xAI, Ollama), troubleshooting, changelog (shipped product changes, including 1.0.7), and how to contribute. Latest docs track the rustfox-docs main branch.',
+						'Self-hosted Telegram AI assistant written in Rust. These files are the English user docs: getting started, how to use (setup, config, Telegram, portal, update), commands, features (Agent tools, MCP, schedule, memory), providers (OpenRouter, OpenCode, xAI, Ollama), troubleshooting, changelog (shipped product changes, including 1.0.8), and how to contribute. Latest docs track the rustfox-docs main branch after v1.0.8; archived v1.0.8 matches that GitHub Release tag.',
 					details:
-						'Architecture decision records stay in the RustFox repository under docs/adr/ for developers. This site does not send end users to those files. Features is a capability catalog. Providers covers choose, credential, and Active or peer, including the OpenCode x-opencode-session header (MissingSessionID is not leave-Go) and a bare xai refusal with no silent hop. Troubleshooting covers those symptoms, HTTP 401 and 402 credits, and portal access. Changelog summarizes shipped product changes for recent releases, including 1.0.7, and links the RustFox CHANGELOG and GitHub Releases. It does not link architecture decision records. Docs archives lag RustFox release tags and are not a release gate. Before install or upgrade, stop the service and kill stray rustfox processes that share the same fox-home. rustfox --version and rustfox -V print the version and exit 0 without starting the bot. Prefer rustfox status for health. Do not use a bare rustfox as a probe. Old install, build-from-source, usage, and upgrade URLs redirect to the how-to pages.',
+						'Architecture decision records stay in the RustFox repository under docs/adr/ for developers. This site does not send end users to those files. Features is a capability catalog. Providers covers choose, credential, and Active or peer, including the OpenCode x-opencode-session header (MissingSessionID is not leave-Go) and a bare xai refusal with no silent hop. Troubleshooting covers those symptoms, HTTP 401 and 402 credits, and portal access. Changelog summarizes shipped product changes for recent releases, including 1.0.8, and links the RustFox CHANGELOG and GitHub Releases. It does not link architecture decision records. Docs archives lag RustFox release tags and are not a release gate. Before install or upgrade, stop the service and kill stray rustfox processes that share the same fox-home. rustfox --version and rustfox -V print the version and exit 0 without starting the bot. Prefer rustfox status for health. Do not use a bare rustfox as a probe. Old install, build-from-source, usage, and upgrade URLs redirect to the how-to pages.',
 					optionalLinks: [
 						{
 							label: 'RustFox repository',
@@ -104,7 +105,7 @@ export default defineConfig({
 							description: 'How to reach the portal on loopback, LAN, or Tailscale',
 						},
 					],
-					exclude: ['archive-placeholder', 'archive-placeholder/**'],
+					exclude: ['v1.0.8', 'v1.0.8/**'],
 				}),
 			],
 		}),
